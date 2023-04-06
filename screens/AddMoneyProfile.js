@@ -52,7 +52,6 @@ export function AddMoneyProfile({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.intro}>
-
         <View style={styles.user}>
           <Image
             style={styles.profileImage}
@@ -122,30 +121,41 @@ export function AddMoneyProfile({ navigation }) {
 
       <View style={styles.buttomIcons}>
         <View>
-            <TouchableOpacity
-          onPress={() => navigation.navigate("Home")}
-          style={styles.arrowLeftIcon}
-        ></TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Bank")}
+            style={styles.arrowLeftIcon}
+          >
+
           <FontAwesomeIcon icon={faHome} color={"#0e2883"} size={30} />
+          </TouchableOpacity>
           <Text>Home</Text>
         </View>
 
         <View>
-            <TouchableOpacity
-          onPress={() => navigation.navigate("Add Money")}
-          style={styles.arrowLeftIcon}
-        ></TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Bank")}
+            style={styles.faCirclePlus}
+          >
+
           <FontAwesomeIcon icon={faCirclePlus} color={"#00B2FF"} size={30} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Add Money")}
+            style={styles.faCirclePlus}
+          > 
           <Text>Add Money</Text>
+          </TouchableOpacity>
         </View>
 
         <View>
-            <TouchableOpacity
-          onPress={() => navigation.navigate("Profile")}
-          style={styles.arrowLeftIcon}
-        ></TouchableOpacity>
-          <FontAwesomeIcon icon={faUser} color={"#0e2883"} size={30} />
-          <Text>Profile</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Profile")}
+            style={styles.faUser}
+          >
+            <FontAwesomeIcon icon={faUser} color={"#0e2883"} size={30} />
+            <Text>Profile</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -212,7 +222,7 @@ const styles = StyleSheet.create({
     height: 60,
     display: "flex",
     justifyContent: "center",
-    textAlign: "center",
+    
     
   },
 
