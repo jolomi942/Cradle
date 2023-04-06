@@ -17,11 +17,13 @@ import { AddMoney } from "./AddMoney";
 import { AddMoneyProfile } from "./AddMoneyProfile";
 
 
+
+
 const Stack = createNativeStackNavigator();
 
 export function StackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Send Money">
+    <Stack.Navigator initialRouteName="Add Money">
       <Stack.Screen name="Add Money Profile" component={AddMoneyProfile} />
       <Stack.Screen name="Add Money" component={AddMoney} />
       <Stack.Screen name="Receive Money" component={ReceiveMoney} />
@@ -37,7 +39,10 @@ export function StackNavigator() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Confirm Details" component={ConfirmDetails} />
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Login Current Device" component={LoginCurrentDevice} />
+      <Stack.Screen
+        name="Login Current Device"
+        component={LoginCurrentDevice}
+      />
     </Stack.Navigator>
   );
 }
