@@ -1,0 +1,255 @@
+import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  Button,
+} from "react-native";
+import React, { appIsReady, useState, useCallback } from "react";
+import { useFonts } from "expo-font";
+import { Inter_500Medium } from "@expo-google-fonts/inter";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faAngleLeft,
+  faArrowLeft,
+  faArrowRotateLeft,
+  faCircleArrowLeft,
+  faCircleChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+
+export function LoginCurrentDevice({ navigation }) {
+  const [enteredUserInfoText, setEnteredTextInput] = useState("");
+  const [userProfile, setUserProfile] = useState([""]);
+
+  function textInputhandler(enteredText) {
+    setEnteredTextInput(enteredText);
+  }
+
+  function addUserInfoHandler(enteredText) {
+    setUserProfile([setEnteredTextInput, enteredUserInfoText]);
+  }
+
+  let [inter] = useFonts({
+    Inter_500Medium,
+  });
+  return (
+    <View style={styles.container}>
+      <View style={styles.intro}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Login")}
+          style={styles.arrowLeftIcon}
+        >
+          <FontAwesomeIcon
+            icon={faCircleChevronLeft}
+            color={"#0e2883"}
+            size={30}
+          />
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+        {/*<View style={styles.container}>  
+          <View style={styles.header}>
+            <TouchableOpacity 
+            style={styles.nav}
+            onPress={() => navigation.navigate('Profile')}>
+              <Text style={styles.brandText}>mymoni</Text>
+              <View style={styles.profileOutline}><Image style={styles.userPix} source={require('../assets/profile-pix.jpg')}/></View>
+            </TouchableOpacity>
+            <View style={styles.tipOfDay}>
+              <View style={styles.tipImgBlock}>
+                <Image style={styles.tipOfDayImg} source={require('../assets/piggy-bank.jpg')}/>
+              </View>
+              <View style={styles.tip}>
+                <Text style={styles.tipText}>By age 25, you should have saved at least 0.5x your annual expenses. The more the better.</Text>
+                <View style={styles.tipOptions}>
+                  <TouchableOpacity>
+                    <Text style={styles.preTips}>Previous tips</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <FontAwesomeIcon icon={faHeart} color={Theme.colors.brown500} size={Theme.fonts.fontSizePoint.caption}/>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View> */}
+      </View>
+      <View style={styles.user}>
+        <Image
+          style={styles.profileImage}
+          source={require("../assets/familypix.jpg")}
+        />
+        <Text style={styles.welcomeText}>Welcome Back</Text>
+        <Text style={styles.passwrdText}>Enter your Password</Text>
+      </View>
+
+      <View style={styles.inputHolder}>
+        <View style={styles.InStyle}>
+          <TextInput
+            style={styles.InputStyle}
+            placeholder="Enter Password"
+            inputMode="password"
+            onChangeText={textInputhandler}
+          />
+        </View>
+
+        <View style={styles.buttonStyle}>
+          <TouchableOpacity>
+            <Button
+              title="Continue"
+              style={{ color: "white" }}
+              onPress={addUserInfoHandler}
+            ></Button>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.scanners}>
+          <View style={styles.fingerStyle}>
+            <TouchableOpacity>
+              <Image
+                style={styles.fingerImage}
+                source={require("../assets/fingerprint.jpg")}
+              />
+            </TouchableOpacity>
+            <Text style={styles.fingerText}>Finger Print</Text>
+          </View>
+
+          <View style={styles.faceStyle}>
+            <TouchableOpacity>
+              <Image
+                style={styles.faceImage}
+                source={require("../assets/faceScanner.jpg")}
+              />
+            </TouchableOpacity>
+            <Text style={styles.faceText}>Face ID</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.listStyle}>
+        {userProfile.map(user => (
+          <Text key={user}>{user}</Text>
+        ))}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 2,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputHolder: {
+    marginBottom: 200,
+  },
+  arrowLeftIcon: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 40,
+    marginRight: 300,
+    alignItems: "flex-start",
+  },
+
+  introText: {
+    color: "black",
+    fontSize: 17,
+    fontFamily: "Inter_500Medium",
+    margin: 10,
+  },
+  intro: {},
+
+  InStyle: {
+    backgroundColor: "#e7e6e6",
+    display: "flex",
+    flexDirection: "row",
+    alignSelf: "center",
+    borderRadius: 10,
+    height: 50,
+    width: 350,
+  },
+  InputStyle: {
+    flex: 1,
+    padding: 5,
+    color: "red",
+    paddingLeft: 15,
+    fontFamily: "Inter_500Medium",
+  },
+  welcomeText: {
+    fontSize: 15,
+  },
+
+  passwrdText: {
+    fontSize: 9,
+  },
+
+  buttonStyle: {
+    height: 50,
+    width: 350,
+    backgroundColor: "#0e2883",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignSelf: "center",
+    flexDirection: "row",
+    margin: 30,
+    borderRadius: 10,
+  },
+
+  profileImage: {
+    borderRadius: 100,
+    width: 100,
+    height: 100,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  user: {
+    display: "flex",
+    marginBottom: 50,
+  },
+  fingerText: {
+    fontSize: 11,
+    display: "flex",
+    textAlign: "center",
+  },
+
+  faceText: {
+    fontSize: 11,
+    display: "flex",
+    textAlign: "center",
+  },
+
+  scanners: {
+    display: "flex",
+    flexDirection: "row",
+    display: "flex",
+    justifyContent: "space-evenly",
+    textAlign: "center",
+  },
+
+  faceImage: {
+    height: 100,
+    width: 100,
+
+    backgroundColor: "#070f4e",
+    display: "flex",
+    justifyContent: "center",
+    alignSelf: "center",
+    flexDirection: "row",
+    textAlign: "center",
+  },
+  fingerImage: {
+    height: 100,
+    width: 100,
+    backgroundColor: "#070f4e",
+    display: "flex",
+    justifyContent: "center",
+    alignSelf: "center",
+    flexDirection: "row",
+    textAlign: "center",
+  },
+});

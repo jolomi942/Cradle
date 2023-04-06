@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    },
+    {
+      "path": "../../mymoni"
+    }
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true
+  }
+}
